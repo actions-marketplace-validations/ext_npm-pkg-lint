@@ -9,11 +9,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
+      - uses: actions/checkout@v6
+      - name: Use Node.js
+        uses: actions/setup-node@v6
       - name: Install dependencies
         run: npm ci
       - name: Prettier
@@ -21,3 +19,14 @@ jobs:
       - name: ESLint
         if: success() || failure()
         run: npm run eslint -- --max-warnings 0
+  npm-pkg-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+      - name: Install dependencies
+        run: npm ci
+      - name: npm-pkg-lint
+        uses: ./

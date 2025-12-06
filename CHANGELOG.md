@@ -1,5 +1,86 @@
 # npm-pkg-lint changelog
 
+## 4.3.1 (2025-11-15)
+
+### Bug Fixes
+
+- `shadowed-types` now handles nested conditions ([6fa1db7](https://github.com/ext/npm-pkg-lint/commit/6fa1db7a7e1c2962731fb951738afc7b6f2b77cd))
+
+## 4.3.0 (2025-11-07)
+
+### Features
+
+- new rule `conflicting-types-typings` ([becb6d2](https://github.com/ext/npm-pkg-lint/commit/becb6d26b358a0c0b6f04c6debfb58fb3f3e97d7))
+- new rule `prefer-types` ([bc86483](https://github.com/ext/npm-pkg-lint/commit/bc86483219732d69dffa5b9dabaac1a2c2b6fb63))
+- new rule `shadowed-types` ([b9d828d](https://github.com/ext/npm-pkg-lint/commit/b9d828db91b448c7f1deebdcb9dcd678585ba8c5))
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.2 [security] ([c6dbc9b](https://github.com/ext/npm-pkg-lint/commit/c6dbc9bd6df9395905a61f1a479fdeb4b0498def))
+- validate pkg.types in addition to pkg.typings ([7f0d4d7](https://github.com/ext/npm-pkg-lint/commit/7f0d4d7dda10455683e68aa3892ee2009efadf72))
+
+## 4.2.0 (2025-10-24)
+
+### Features
+
+- **deps:** update dependency nano-spawn to v2 ([3e7c339](https://github.com/ext/npm-pkg-lint/commit/3e7c339a6cd928f92de6159414593fc6d5c4d079))
+
+### Bug Fixes
+
+- **deps:** update dependency @humanwhocodes/momoa to v3.3.10 ([1abf3d5](https://github.com/ext/npm-pkg-lint/commit/1abf3d50d9afb55fcec5b6ad81e85a3d798a3519))
+- disallow `__fixtures__` ([9bedf7e](https://github.com/ext/npm-pkg-lint/commit/9bedf7e357f93b46f28061a880d194a91b8c55c4))
+- disallow yarn.lock ([7595cef](https://github.com/ext/npm-pkg-lint/commit/7595cef02d184fd6ab55c1dbe86416d1b9346cac))
+
+## 4.1.2 (2025-10-10)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.7.3 ([2ac4576](https://github.com/ext/npm-pkg-lint/commit/2ac457648401bcf1d81631f87524e65dcc991f78))
+
+## 4.1.1 (2025-09-26)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.4.4 ([9593490](https://github.com/ext/npm-pkg-lint/commit/959349018cd3aeca9fdc82a0e30a01d715974c28))
+- **deps:** update dependency tar to v7.5.1 ([e4ee291](https://github.com/ext/npm-pkg-lint/commit/e4ee29189259354350dfb2517025683e90eeffcf))
+
+## 4.1.0 (2025-09-19)
+
+### Features
+
+- **deps:** update dependency find-up to v8 ([ef00c41](https://github.com/ext/npm-pkg-lint/commit/ef00c41a7608db9ea7d9668a4410d2aa161bbf16))
+
+## 4.0.5 (2025-09-12)
+
+### Bug Fixes
+
+- **deps:** update dependency nano-spawn to v1.0.3 ([90da224](https://github.com/ext/npm-pkg-lint/commit/90da224fb43f6a04ed21bdd0c9b332e3f65fe582))
+
+## 4.0.4 (2025-08-30)
+
+### Bug Fixes
+
+- allow typescript-eslint i keywords contain eslint ([745b0ad](https://github.com/ext/npm-pkg-lint/commit/745b0ad07a7692c2ea8cdc73e6e73223e120513f))
+
+## 4.0.3 (2025-08-15)
+
+### Bug Fixes
+
+- **deps:** update dependency @humanwhocodes/momoa to v3.3.9 ([7c1c120](https://github.com/ext/npm-pkg-lint/commit/7c1c120d50477a2a370a27f1e399a614751da28c))
+- **deps:** update dependency tmp to v0.2.5 ([04c5538](https://github.com/ext/npm-pkg-lint/commit/04c553841e6c1613d33173bca04956eb15ad0c9d))
+
+## 4.0.2 (2025-08-08)
+
+### Bug Fixes
+
+- **deps:** update dependency tmp to v0.2.4 [security] ([d10a199](https://github.com/ext/npm-pkg-lint/commit/d10a199ced27b00021b4cd83ff7834f09b4ab61b))
+
+## 4.0.1 (2025-06-27)
+
+### Bug Fixes
+
+- **deps:** update dependency @html-validate/stylish to v4.3.0 ([db4c0bc](https://github.com/ext/npm-pkg-lint/commit/db4c0bc2c5ad5800c4934bc3224b4ce3aa909735))
+
 ## 4.0.0 (2025-05-25)
 
 ### ⚠ BREAKING CHANGES

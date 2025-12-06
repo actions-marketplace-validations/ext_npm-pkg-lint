@@ -1,10 +1,10 @@
-import fs from "fs";
+import fs from "node:fs";
 import * as tar from "tar";
 import { type ReadEntry, Parser } from "tar";
-import { type PackageJson, type PackageJsonExports } from "./types";
 import { isBlacklisted } from "./blacklist";
 import { type Message } from "./message";
 import { type Result } from "./result";
+import { type PackageJson, type PackageJsonExports } from "./types";
 
 export interface TarballMeta {
 	/** Path to tarball on disk */
@@ -137,6 +137,9 @@ function* requiredFiles(pkg: PackageJson): Generator<RequiredFile> {
 			field: "jsnext:main",
 			ruleId,
 		});
+	}
+	if (pkg.types) {
+		yield* yieldRequiredFiles(pkg.types, { field: "types", ruleId: "no-missing-types" });
 	}
 	if (pkg.typings) {
 		yield* yieldRequiredFiles(pkg.typings, { field: "typings", ruleId: "no-missing-typings" });

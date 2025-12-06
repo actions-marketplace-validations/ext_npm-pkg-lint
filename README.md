@@ -71,10 +71,13 @@ This tool can be used directly with Github Actions:
 > You need to have `npm-pkg-lint` installed as a dependency in `package.json`.
 > This ensures you have control over which version of the tool is actually running.
 
-| Input&nbsp;parameter | Default   | Description                                                               |
-| -------------------- | --------- | ------------------------------------------------------------------------- |
-| build                | `"build"` | Build command (executed with `npm run`). Set to `false` to disable build. |
-| npm-pack             | `true`    | When enabled `npm pack` is run automatically                              |
+| Input&nbsp;parameter | Default   | Description                                                                                |
+| -------------------- | --------- | ------------------------------------------------------------------------------------------ |
+| allow-dependencies   | `-`       | Comma-separated list of dependencies to explicitly allow even if they would yield an error |
+| build                | `"build"` | Build command (executed with `npm run`). Set to `false` to disable build.                  |
+| folders              | `"."`     | Space-separated list of folder to run in.                                                  |
+| ignore-node-version  | -         | Ignore error for outdated node version (see --ignore-node-version CLI argument)            |
+| npm-pack             | `true`    | When enabled `npm pack` is run automatically                                               |
 
 ## Disallowed files
 
@@ -103,6 +106,7 @@ Verifies the presence of files specified in:
 - `browser`
 - `module`
 - `jsnext:main`,
+- `types`
 - `typings`
 - `bin`
 - `man`
@@ -112,6 +116,24 @@ Verifies the presence of files specified in:
 Requires `types` to be the first condition in `exports`.
 
 **Why?** For TypeScript to properly detect `types` it need to come before `require` or `import`, else it will fall back to detecting by filename.
+
+## TypeScript `types` matching `exports`
+
+Requires `types` to match `exports`.
+
+**Why?** To avoid issues with newer TS versions resolving with `exports` if present rather than the older `types` field.
+
+## TypeScript prefer `types` over `typings`
+
+Requires `types` to be used instead of `typings`.
+
+**Why?** While TypeScript allows `typings` to be used as an alias, it is better for consistency to only use one over the other.
+
+## TypeScript conflicting `types` and `typings` fields
+
+Requires only one of the two fields `types` and `typings` to be used, not both.
+
+**Why?** `typings` is an alias for `types` and if both are set it is unclear which is to be used (and could potentially be set to different values).
 
 ## Disallowed dependencies
 

@@ -16,6 +16,9 @@ describe("should disallow unittests", () => {
 		"dist/file.test.tsx",
 		"dist/file.test.d.ts",
 		"dist/file.test.d.ts.map",
+		"src/__tests__/file.js",
+		"src/__fixtures__/file.js",
+		"src/__snapshots__/file.js.snap",
 	])("%s", (filename) => {
 		expect.assertions(1);
 		expect(isBlacklisted(filename)).toBeTruthy();
@@ -62,6 +65,12 @@ describe("Task runners", () => {
 });
 
 describe("CI/CD", () => {
+	it("should disallow github", () => {
+		expect.assertions(2);
+		expect(isBlacklisted(".github/workflows/foo.yml")).toBeTruthy();
+		expect(isBlacklisted(".github/FUNDING.md")).toBeTruthy();
+	});
+
 	it("should disallow Zuul", () => {
 		expect.assertions(6);
 		expect(isBlacklisted(".zuul.d/foo.yml")).toBeTruthy();

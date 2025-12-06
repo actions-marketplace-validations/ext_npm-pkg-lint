@@ -1,24 +1,27 @@
 import { type DocumentNode } from "@humanwhocodes/momoa";
-import { type PackageJson } from "./types";
 import { type Message } from "./message";
 import { type Result } from "./result";
+import { conflictingTypesTypings } from "./rules/conflicting-types-typings";
+import { deprecatedDependency } from "./rules/deprecated-dependency";
+import { isDisallowedDependency } from "./rules/disallowed-dependency";
+import { exportsTypesOrder } from "./rules/exports-types-order";
+import { isObsoleteDependency } from "./rules/obsolete-dependency";
+import { outdatedEngines } from "./rules/outdated-engines";
+import { preferTypes } from "./rules/prefer-types";
+import { shadowedTypes } from "./rules/shadowed-types";
+import { typesNodeMatchingEngine } from "./rules/types-node-matching-engine";
+import { verifyEngineConstraint } from "./rules/verify-engine-constraint";
+import { type PackageJson } from "./types";
+import { jsonLocation } from "./utils";
 import {
+	ValidationError,
 	nonempty,
 	present,
 	typeArray,
 	typeString,
-	ValidationError,
 	validRepoUrl,
 	validUrl,
 } from "./validators";
-import { deprecatedDependency } from "./rules/deprecated-dependency";
-import { isDisallowedDependency } from "./rules/disallowed-dependency";
-import { isObsoleteDependency } from "./rules/obsolete-dependency";
-import { exportsTypesOrder } from "./rules/exports-types-order";
-import { outdatedEngines } from "./rules/outdated-engines";
-import { verifyEngineConstraint } from "./rules/verify-engine-constraint";
-import { typesNodeMatchingEngine } from "./rules/types-node-matching-engine";
-import { jsonLocation } from "./utils";
 
 export interface VerifyPackageJsonOptions {
 	allowedDependencies: Set<string>;
@@ -164,12 +167,15 @@ export async function verifyPackageJson(
 	const { ignoreNodeVersion } = options;
 
 	const messages: Message[] = [
+		...conflictingTypesTypings(pkg, pkgAst),
 		...(await deprecatedDependency(pkg, pkgAst, options)),
 		...(await verifyEngineConstraint(pkg)),
 		...exportsTypesOrder(pkg, pkgAst),
 		...verifyFields(pkg, pkgAst, options),
 		...verifyDependencies(pkg, pkgAst, options),
 		...outdatedEngines(pkg, pkgAst, ignoreNodeVersion),
+		...preferTypes(pkg, pkgAst),
+		...shadowedTypes(pkg, pkgAst),
 		...typesNodeMatchingEngine(pkg, pkgAst),
 	];
 

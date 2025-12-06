@@ -8,10 +8,22 @@ branding:
   color: blue
 
 inputs:
+  allow-dependencies:
+    description: Comma-separated list of dependencies to explicitly allow even if they would yield an error
+    required: false
+    default: ""
   build:
     description: Build command (executed with `npm run`)
     required: false
     default: build
+  folders:
+    description: Space-separated list of folder to run in.
+    required: false
+    default: "."
+  ignore-node-version:
+    description: Ignore error for outdated node version (see `--ignore-node-version` CLI argument)
+    required: false
+    default: ""
   npm-pack:
     description: When enabled `npm pack` is run automatically
     required: false
@@ -32,7 +44,32 @@ runs:
     - name: Create NPM package
       if: (inputs.npm-pack == 'true' || inputs.npm-pack == true)
       shell: bash
-      run: npm pack
+      run: |
+        for pkg in ${{ inputs.folders }}; do (
+          set -e
+          if [[ "${pkg}" != "." ]]; then
+            cd $pkg
+            name=$(node -p 'require("./package.json").name')
+            echo "::group::${name}"
+          fi
+          npm pack
+          if [[ "${pkg}" != "." ]]; then
+            echo "::endgroup::"
+          fi
+        ); done
     - name: npm-pkg-lint
       shell: bash
-      run: npm exec npm-pkg-lint
+      run: |
+        for pkg in ${{ inputs.folders }}; do (
+          set -e
+          if [[ "${pkg}" != "." ]]; then
+            cd $pkg
+            name=$(node -p 'require("./package.json").name')
+            echo "::group::${name}"
+            echo Running npm-pkg-lint on package ${name} in ${pkg}
+          fi
+          npm exec npm-pkg-lint -- ${{ inputs.allow-dependencies && format('--allow-dependency={0}', inputs.allow-dependencies) || '' }} ${{ inputs.ignore-node-version && format('--ignore-node-version={0}', inputs.ignore-node-version) || '' }}
+          if [[ "${pkg}" != "." ]]; then
+            echo "::endgroup::"
+          fi
+        ); done
