@@ -1,6 +1,6 @@
 {
   "name": "npm-pkg-lint",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "Opinionated linter for NPM package tarball and package.json metadata",
   "keywords": [
     "lint",
@@ -69,16 +69,16 @@
     "find-up": "8.0.0",
     "nano-spawn": "2.0.0",
     "semver": "7.7.3",
-    "tar": "7.5.2",
+    "tar": "7.5.3",
     "tmp": "0.2.5"
   },
   "devDependencies": {
     "@babel/code-frame": "7.28.6",
     "@html-validate/commitlint-config": "3.6.4",
-    "@html-validate/eslint-config": "6.13.1",
+    "@html-validate/eslint-config": "6.13.5",
     "@html-validate/eslint-config-jest": "6.13.3",
-    "@html-validate/eslint-config-typescript": "6.13.4",
-    "@html-validate/eslint-config-typescript-typeinfo": "6.13.4",
+    "@html-validate/eslint-config-typescript": "6.13.5",
+    "@html-validate/eslint-config-typescript-typeinfo": "6.13.5",
     "@html-validate/jest-config": "3.13.0",
     "@html-validate/prettier-config": "3.1.12",
     "@html-validate/release-scripts": "7.1.0",
@@ -87,7 +87,7 @@
     "@types/argparse": "2.0.17",
     "@types/babel__code-frame": "7.27.0",
     "@types/jest": "30.0.0",
-    "@types/node": "20.19.28",
+    "@types/node": "20.19.30",
     "@types/semver": "7.7.1",
     "@types/tar": "6.1.13",
     "@types/tmp": "0.2.6",
