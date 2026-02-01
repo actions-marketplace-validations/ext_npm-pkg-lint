@@ -1,6 +1,6 @@
 {
   "name": "npm-pkg-lint",
-  "version": "4.3.2",
+  "version": "4.3.4",
   "description": "Opinionated linter for NPM package tarball and package.json metadata",
   "keywords": [
     "lint",
@@ -69,7 +69,7 @@
     "find-up": "8.0.0",
     "nano-spawn": "2.0.0",
     "semver": "7.7.3",
-    "tar": "7.5.3",
+    "tar": "7.5.7",
     "tmp": "0.2.5"
   },
   "devDependencies": {
@@ -77,10 +77,10 @@
     "@html-validate/commitlint-config": "3.6.4",
     "@html-validate/eslint-config": "6.13.5",
     "@html-validate/eslint-config-jest": "6.13.3",
-    "@html-validate/eslint-config-typescript": "6.13.5",
-    "@html-validate/eslint-config-typescript-typeinfo": "6.13.5",
-    "@html-validate/jest-config": "3.13.0",
-    "@html-validate/prettier-config": "3.1.12",
+    "@html-validate/eslint-config-typescript": "6.13.6",
+    "@html-validate/eslint-config-typescript-typeinfo": "6.13.6",
+    "@html-validate/jest-config": "3.13.1",
+    "@html-validate/prettier-config": "3.1.14",
     "@html-validate/release-scripts": "7.1.0",
     "@tsconfig/node20": "20.1.8",
     "@tsconfig/strictest": "2.0.8",
