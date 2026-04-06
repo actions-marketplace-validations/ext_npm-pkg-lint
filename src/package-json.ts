@@ -4,7 +4,11 @@ import { type Result } from "./result";
 import { conflictingTypesTypings } from "./rules/conflicting-types-typings";
 import { deprecatedDependency } from "./rules/deprecated-dependency";
 import { isDisallowedDependency } from "./rules/disallowed-dependency";
+import { exportsDefaultOrder } from "./rules/exports-default-order";
+import { exportsImportRequireOrder } from "./rules/exports-import-require-order";
+import { exportsPath } from "./rules/exports-path";
 import { exportsTypesOrder } from "./rules/exports-types-order";
+import { noProtocolDependencies } from "./rules/no-protocol-dependencies";
 import { isObsoleteDependency } from "./rules/obsolete-dependency";
 import { outdatedEngines } from "./rules/outdated-engines";
 import { preferTypes } from "./rules/prefer-types";
@@ -34,6 +38,7 @@ type validator = (key: string, value: unknown) => void;
 
 const fields: Record<string, validator[]> = {
 	description: [present, typeString, nonempty],
+	files: [present, typeArray],
 	keywords: [present, typeArray, nonempty],
 	homepage: [present, typeString, validUrl],
 	bugs: [present, validUrl],
@@ -109,7 +114,7 @@ function verifyDependencies(
 		}
 
 		/* skip @types/* if explicitly allowed by user */
-		if (options.allowTypesDependencies && /^@types\//.exec(dependency)) {
+		if (options.allowTypesDependencies && dependency.startsWith("@types/")) {
 			continue;
 		}
 
@@ -162,6 +167,7 @@ export async function verifyPackageJson(
 	pkg: PackageJson,
 	pkgAst: DocumentNode,
 	filePath: string,
+	/* eslint-disable-next-line unicorn/no-object-as-default-parameter -- technical debt, should destruct with defaults */
 	options: VerifyPackageJsonOptions = { allowedDependencies: new Set(), ignoreNodeVersion: false },
 ): Promise<Result[]> {
 	const { ignoreNodeVersion } = options;
@@ -170,9 +176,13 @@ export async function verifyPackageJson(
 		...conflictingTypesTypings(pkg, pkgAst),
 		...(await deprecatedDependency(pkg, pkgAst, options)),
 		...(await verifyEngineConstraint(pkg)),
+		...exportsDefaultOrder(pkg, pkgAst),
+		...exportsImportRequireOrder(pkg, pkgAst),
+		...exportsPath(pkg, pkgAst),
 		...exportsTypesOrder(pkg, pkgAst),
 		...verifyFields(pkg, pkgAst, options),
 		...verifyDependencies(pkg, pkgAst, options),
+		...noProtocolDependencies(pkg, pkgAst),
 		...outdatedEngines(pkg, pkgAst, ignoreNodeVersion),
 		...preferTypes(pkg, pkgAst),
 		...shadowedTypes(pkg, pkgAst),

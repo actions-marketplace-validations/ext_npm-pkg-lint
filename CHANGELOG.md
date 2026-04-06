@@ -1,5 +1,94 @@
 # npm-pkg-lint changelog
 
+## 4.6.4 (2026-04-05)
+
+### Bug Fixes
+
+- **deps:** update dependency @html-validate/stylish to v5.1.0 ([4dcefe3](https://github.com/ext/npm-pkg-lint/commit/4dcefe37cdc7855065facd56aea8a94997549070))
+
+## 4.6.3 (2026-04-02)
+
+### Bug Fixes
+
+- **deps:** update dependency nano-spawn to v2.1.0 ([786bfaf](https://github.com/ext/npm-pkg-lint/commit/786bfaf18910a4518f25924dace54127f9bc545e))
+
+## 4.6.2 (2026-03-25)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.13 ([2d0603e](https://github.com/ext/npm-pkg-lint/commit/2d0603edb6ba5fbd3ee4ec5d8b113d58ed266807))
+
+## 4.6.1 (2026-03-21)
+
+### Bug Fixes
+
+- ignore `resolved` for linked packages (typical monorepo setup) ([eada3a4](https://github.com/ext/npm-pkg-lint/commit/eada3a4f78b8e3d4c1d3c18a1e05510a68c53938))
+
+## 4.6.0 (2026-03-21)
+
+### Features
+
+- new rule `package-lock-registry` ([1c32ce8](https://github.com/ext/npm-pkg-lint/commit/1c32ce8462edc8e4ebe4992e9937b0406dfb0cad))
+- new rule `package-lock-version` ([889bc31](https://github.com/ext/npm-pkg-lint/commit/889bc3199a9a895c6003e0dd0eddb180325135e5))
+
+## 4.5.3 (2026-03-21)
+
+### Bug Fixes
+
+- allow `file:` in devDependencies ([5c868e2](https://github.com/ext/npm-pkg-lint/commit/5c868e2a4c4d65bb37d52ec05da60c18f792d209))
+
+## 4.5.2 (2026-03-21)
+
+### Bug Fixes
+
+- allow `link:` in devDependencies ([d812f44](https://github.com/ext/npm-pkg-lint/commit/d812f44df1d57720b41982a6e1056202a70dd741))
+
+## 4.5.1 (2026-03-21)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.12 ([ef57c75](https://github.com/ext/npm-pkg-lint/commit/ef57c75d1a543c6d525ef5a7a38163e5ffbfbc16))
+
+## 4.5.0 (2026-03-18)
+
+### Features
+
+- new rule `exports-default-order` ([aaa00ec](https://github.com/ext/npm-pkg-lint/commit/aaa00ec450477703b1d296e15bf82663bce2194b))
+- new rule `exports-import-require-order` ([490e0e6](https://github.com/ext/npm-pkg-lint/commit/490e0e665f8f570cbba92f2bf7fd6945b94f85c5))
+- new rule `exports-path` ([e76acc3](https://github.com/ext/npm-pkg-lint/commit/e76acc325296144c1b772828c25ca39dc8e3f676))
+- new rule `no-protocol-dependencies` ([0b31cd2](https://github.com/ext/npm-pkg-lint/commit/0b31cd24b7302324623cc2dc16a6a9b40352ee4c))
+- require the `files` field in `package.json` ([5585a35](https://github.com/ext/npm-pkg-lint/commit/5585a35d0b310f4d4cfc75a68f9cf91df4968d0b))
+
+## 4.4.2 (2026-03-13)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.11 ([3f8609e](https://github.com/ext/npm-pkg-lint/commit/3f8609e3675a5be41f708b626e3a09a01e90bdb9))
+
+## 4.4.1 (2026-03-06)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.10 [security] ([77b794d](https://github.com/ext/npm-pkg-lint/commit/77b794d57309d1be17240859db27fe35965ec2fb))
+
+## 4.4.0 (2026-02-27)
+
+### Features
+
+- **deps:** update dependency @html-validate/stylish to v5 ([7af6302](https://github.com/ext/npm-pkg-lint/commit/7af630242aa632ad9f7d9fce671067b47839eb65))
+
+## 4.3.6 (2026-02-20)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.9 ([3c72ec0](https://github.com/ext/npm-pkg-lint/commit/3c72ec0a0d45ba9ad0cd5e4b2e3dc029881913f2))
+
+## 4.3.5 (2026-02-13)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.7.4 ([ff648ca](https://github.com/ext/npm-pkg-lint/commit/ff648ca9c6c8e999d563bcdc977d227b26b971e8))
+
 ## 4.3.4 (2026-01-30)
 
 ### Bug Fixes

@@ -1,8 +1,12 @@
 jest.unmock("tar");
+jest.mock("find-up", () => ({
+	findUp: () => Promise.resolve(undefined),
+}));
 
 import { promises as fs } from "node:fs";
 import * as path from "node:path";
 import { parse } from "@humanwhocodes/momoa";
+import { expect, it } from "@jest/globals";
 import { globSync } from "glob";
 import spawn from "nano-spawn";
 import { type PackageJson } from "../src/types";

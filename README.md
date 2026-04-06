@@ -111,6 +111,28 @@ Verifies the presence of files specified in:
 - `bin`
 - `man`
 
+## `exports` paths
+
+Requires all values in `exports` to start with `./`.
+
+**Why?** The Node.js specification requires export paths to be relative paths starting with `./`.
+Values not starting with `./` will be treated as package names by some runtimes and bundlers, which is almost certainly not the intent.
+
+## `import` before `require` in `exports`
+
+Requires `import` and `module`, if either is present alongside `require`, to come before `require` in `exports`.
+
+**Why?** Some runtimes and bundlers evaluate conditions in order and stop at the first match.
+If `require` is listed before `import` (or `module`), ESM-capable consumers that support both may unexpectedly pick up the CJS build.
+`module` is treated as an alias for `import` as it serves the same purpose for bundlers such as webpack.
+
+## `default` in `exports`
+
+Requires `default`, if present, to be the last condition in `exports`.
+
+**Why?** The `default` condition is a catch-all fallback.
+If it is listed before more specific conditions (e.g. `require` or `import`) those conditions will never be reached by runtimes that support them.
+
 ## TypeScript `types` in `exports`
 
 Requires `types` to be the first condition in `exports`.
@@ -134,6 +156,23 @@ Requires `types` to be used instead of `typings`.
 Requires only one of the two fields `types` and `typings` to be used, not both.
 
 **Why?** `typings` is an alias for `types` and if both are set it is unclear which is to be used (and could potentially be set to different values).
+
+## Protocol dependencies
+
+Disallows dependencies that resolve outside the registry across all dependency fields (`dependencies`, `devDependencies`, `peerDependencies`, `optionalDependencies`).
+
+**Why?** Protocol specifiers such as `file:`, `link:`, `github:` or `git+https:` reference local paths or remote git repositories instead of versioned registry packages.
+Published packages should only depend on registry packages so that consumers can reliably install the same code.
+
+Disallowed protocols:
+
+- `file:` - local filesystem path
+- `link:` - symlink
+- `github:` / `gitlab:` / `bitbucket:` - platform shorthand
+- `git:` / `git+https:` / `git+http:` / `git+ssh:` / `git+file:` - arbitrary git URL
+- `http:` / `https:` - direct URL tarball
+- `user/repo` - Github shorthand (without `github:` prefix)
+- `user@host:path` - git URL (e.g. `git@github.com:user/repo.git`)
 
 ## Disallowed dependencies
 
@@ -373,3 +412,23 @@ The following `package.json`:
 ```
 
 will yield an error becase `@tsconfig/node14` is for NodeJS v14 but the `engines.node` constraints the version to v12.
+
+## `package-lock.json` lockfile
+
+Requires `package-lock.json`, if present, to pass the following checks:
+
+- Lockfile version must be 3.
+- All packages must be resolved from `https://registry.npmjs.org/`.
+
+**Why?** Lockfile version 3 (introduced with npm v7) includes the full dependency tree in a more compact and efficient format.
+Older lockfile versions (1 and 2) are either missing information or include redundant data that version 3 supersedes.
+Using version 3 ensures compatibility with modern npm tooling and avoids the ambiguity of the legacy formats.
+
+**Why?** Packages resolved from private registries, git URLs, or local paths indicate non-standard dependencies that may not be reproducible in all environments.
+All published production dependencies should be resolvable from the public npm registry to ensure consumers can reliably install the same code.
+
+To upgrade an existing lockfile to version 3 run:
+
+```sh
+npm install --lockfile-version 3 --package-lock-only
+```
