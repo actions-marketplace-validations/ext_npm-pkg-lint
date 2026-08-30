@@ -31,10 +31,12 @@ export async function getFileList(filename: string): Promise<string[]> {
 	await tar.list({
 		file: filename,
 		strict: true,
-		onentry: (entry: ReadEntry) => entries.push(entry),
+		onReadEntry(entry: ReadEntry) {
+			entries.push(entry);
+		},
 	});
 	return entries.map((entry) => {
-		const filename = entry.path as unknown as string;
+		const filename = entry.path;
 		return normalize(filename);
 	});
 }
@@ -66,7 +68,7 @@ export async function getFileContent(
 			resolve(contents);
 		});
 		const rs = fs.createReadStream(tarball.filePath);
-		rs.pipe(t as unknown as NodeJS.WritableStream);
+		rs.pipe(t);
 	});
 }
 
@@ -79,11 +81,11 @@ function normalizeRequiredFiles(
 ): string[] {
 	if (typeof src === "string") {
 		return [src];
-	} else if (Array.isArray(src)) {
-		return src;
-	} else {
-		return Object.values(src).filter((it) => it !== false) as string[];
 	}
+	if (Array.isArray(src)) {
+		return src;
+	}
+	return Object.values(src).filter((it) => it !== false) as string[];
 }
 
 function* yieldRequiredFiles(

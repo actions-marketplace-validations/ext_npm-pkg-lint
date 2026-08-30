@@ -1,7 +1,9 @@
+/* eslint-disable unicorn/prefer-https -- intentional for testing */
+
 import { type DocumentNode, parse } from "@humanwhocodes/momoa";
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { verifyPackageJson } from "./package-json";
-import { PackageJson } from "./types";
+import { type PackageJson } from "./types";
 import { codeframe } from "./utils/codeframe";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- it exists in the mock only
@@ -30,9 +32,10 @@ beforeEach(() => {
 		repository: { type: "git", url: "git+https://git.example.net/test-case.git" },
 		files: ["dist"],
 		engines: {
-			node: ">= 20",
+			node: ">= 22",
 		},
 	};
+	/* eslint-disable-next-line @typescript-eslint/no-unsafe-call -- technical debt */
 	npmInfoMockDefault(pkg);
 });
 
@@ -87,6 +90,24 @@ it("should return error if aliased dependency is disallowed", async () => {
 	`);
 });
 
+it("should return error if aliased dependency (scoped) is disallowed", async () => {
+	expect.assertions(1);
+	pkg.dependencies = {
+		aliased: "npm:@types/node@1.2.3",
+	};
+	const { content, ast } = generateAst(pkg);
+	const results = await verifyPackageJson(pkg, ast, "package.json");
+	expect(codeframe(content, results)).toMatchInlineSnapshot(`
+		"ERROR: "aliased" ("npm:@types/node") should be a devDependency (disallowed-dependency) at package.json
+		  21 |   },
+		  22 |   "dependencies": {
+		> 23 |     "aliased": "npm:@types/node@1.2.3"
+		     |     ^
+		  24 |   }
+		  25 | }"
+	`);
+});
+
 it("should return error if dependency is obsolete", async () => {
 	expect.assertions(1);
 	pkg.devDependencies = {
@@ -99,6 +120,42 @@ it("should return error if dependency is obsolete", async () => {
 		  21 |   },
 		  22 |   "devDependencies": {
 		> 23 |     "mkdirp": "1.2.3"
+		     |     ^
+		  24 |   }
+		  25 | }"
+	`);
+});
+
+it("should return error if aliased dependency is obsolete", async () => {
+	expect.assertions(1);
+	pkg.devDependencies = {
+		aliased: "npm:mkdirp@1.2.3",
+	};
+	const { content, ast } = generateAst(pkg);
+	const results = await verifyPackageJson(pkg, ast, "package.json");
+	expect(codeframe(content, results)).toMatchInlineSnapshot(`
+		"ERROR: "aliased" ("npm:mkdirp") is obsolete and should no longer be used: use native "fs.mkdir(..., { recursive: true })" instead (obsolete-dependency) at package.json
+		  21 |   },
+		  22 |   "devDependencies": {
+		> 23 |     "aliased": "npm:mkdirp@1.2.3"
+		     |     ^
+		  24 |   }
+		  25 | }"
+	`);
+});
+
+it("should return error if @tsconfig/node* does not match engines.node", async () => {
+	expect.assertions(1);
+	pkg.devDependencies = {
+		"@tsconfig/node14": "^14.1.2",
+	};
+	const { content, ast } = generateAst(pkg);
+	const results = await verifyPackageJson(pkg, ast, "package.json");
+	expect(codeframe(content, results)).toMatchInlineSnapshot(`
+		"ERROR: @tsconfig/node14 does not match engines.node v22 (tsconfig-base-matching-engine) at package.json
+		  21 |   },
+		  22 |   "devDependencies": {
+		> 23 |     "@tsconfig/node14": "^14.1.2"
 		     |     ^
 		  24 |   }
 		  25 | }"
@@ -594,7 +651,7 @@ describe("fields", () => {
 				> 16 |   "files": "dist/",
 				     |            ^
 				  17 |   "engines": {
-				  18 |     "node": ">= 20"
+				  18 |     "node": ">= 22"
 				  19 |   }"
 			`);
 		});

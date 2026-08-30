@@ -1,6 +1,6 @@
 {
   "name": "npm-pkg-lint",
-  "version": "4.6.4",
+  "version": "5.2.4",
   "description": "Opinionated linter for NPM package tarball and package.json metadata",
   "keywords": [
     "lint",
@@ -63,46 +63,52 @@
     ]
   },
   "dependencies": {
-    "@html-validate/stylish": "5.1.0",
-    "@humanwhocodes/momoa": "3.3.10",
-    "argparse": "2.0.1",
+    "@html-validate/stylish": "6.0.0",
+    "@humanwhocodes/momoa": "3.3.12",
     "find-up": "8.0.0",
     "nano-spawn": "2.1.0",
-    "semver": "7.7.4",
-    "tar": "7.5.13",
-    "tmp": "0.2.5"
+    "semver": "7.8.5",
+    "tar": "7.5.22",
+    "tmp": "0.2.7"
   },
   "devDependencies": {
-    "@babel/code-frame": "7.29.0",
-    "@html-validate/commitlint-config": "3.6.10",
-    "@html-validate/eslint-config": "7.0.1",
-    "@html-validate/eslint-config-jest": "7.0.0",
-    "@html-validate/eslint-config-typescript": "7.0.0",
-    "@html-validate/eslint-config-typescript-typeinfo": "7.0.0",
-    "@html-validate/jest-config": "3.16.0",
-    "@html-validate/prettier-config": "3.1.16",
-    "@html-validate/release-scripts": "7.1.19",
-    "@jest/globals": "30.3.0",
-    "@tsconfig/node20": "20.1.9",
+    "@babel/code-frame": "8.0.0",
+    "@html-validate/commitlint-config": "4.3.3",
+    "@html-validate/eslint-config": "9.19.0",
+    "@html-validate/eslint-config-jest": "9.19.0",
+    "@html-validate/eslint-config-typescript": "9.19.0",
+    "@html-validate/eslint-config-typescript-typeinfo": "9.19.0",
+    "@html-validate/jest-config": "3.18.2",
+    "@html-validate/prettier-config": "4.1.12",
+    "@html-validate/release-scripts": "7.6.8",
+    "@jest/globals": "30.5.0",
+    "@tsconfig/node22": "22.0.6",
     "@tsconfig/strictest": "2.0.8",
-    "@types/argparse": "2.0.17",
     "@types/babel__code-frame": "7.27.0",
-    "@types/node": "20.19.39",
-    "@types/semver": "7.7.1",
+    "@types/node": "22.20.1",
+    "@types/semver": "7.8.0",
     "@types/tmp": "0.2.6",
-    "esbuild": "0.28.0",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "esbuild": "0.28.2",
     "glob": "13.0.6",
     "husky": "9.1.7",
-    "jest": "30.3.0",
-    "lint-staged": "16.4.0",
-    "ts-jest": "29.4.9",
-    "typescript": "6.0.2"
+    "jest": "30.5.0",
+    "lint-staged": "17.4.1",
+    "ts-jest": "29.4.12",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "engines": {
-    "node": "^20.17 || >= 22.16"
+    "node": "^22.16.0 || >= 24.0.0"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "allowScripts": {
+    "@html-validate/commitlint-config": true,
+    "@parcel/watcher": false,
+    "esbuild": true,
+    "fsevents": false,
+    "unrs-resolver": true
   }
 }

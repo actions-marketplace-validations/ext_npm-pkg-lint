@@ -1,5 +1,156 @@
 # npm-pkg-lint changelog
 
+## 5.2.4 (2026-08-23)
+
+### Bug Fixes
+
+- **deps:** update dependency @humanwhocodes/momoa to v3.3.12 ([50a2647](https://github.com/ext/npm-pkg-lint/commit/50a2647188f51fd5aee1a1f3fce740fb5e9f9fc4))
+
+## 5.2.3 (2026-08-18)
+
+### Bug Fixes
+
+- fix `*.tsbuildinfo` regexp for disallowed files ([00a7ded](https://github.com/ext/npm-pkg-lint/commit/00a7ded3f3e77f15b69f695e300d49e5f31abf81))
+
+## 5.2.2 (2026-07-25)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.22 ([1f78777](https://github.com/ext/npm-pkg-lint/commit/1f787773d8ab615d8b37948f696b048dc159041d))
+
+## 5.2.1 (2026-07-23)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.21 ([cea4f48](https://github.com/ext/npm-pkg-lint/commit/cea4f4842197fdd1ce150d38d3742ba13ee35e2c))
+
+## 5.2.0 (2026-07-17)
+
+### Features
+
+- **deps:** replace `argparse` dependency with native `parseArgs` ([d83d110](https://github.com/ext/npm-pkg-lint/commit/d83d11046985397fa945ca4f15b0c1778c289158))
+
+## 5.1.12 (2026-07-15)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.20 ([8afbd36](https://github.com/ext/npm-pkg-lint/commit/8afbd366a017a4781d831f22c521875903781837))
+
+## 5.1.11 (2026-07-11)
+
+### Bug Fixes
+
+- fix `tsconfig-base-matching-engine` rule not being run ([f737677](https://github.com/ext/npm-pkg-lint/commit/f73767774c673ece04b171bcf1ad314e91fc3da0))
+- handle aliased `npm:` packages with scopes ([7ca06b6](https://github.com/ext/npm-pkg-lint/commit/7ca06b6cb43f7181e2eccc8ff3bb8bcca55dbf6a))
+- handle when obsolete packages are aliased ([c16681f](https://github.com/ext/npm-pkg-lint/commit/c16681f75578bf15ff44fd2686dcde3e85fb45ec))
+
+## 5.1.10 (2026-06-29)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.19 ([cec13e5](https://github.com/ext/npm-pkg-lint/commit/cec13e50bfef0a1afd3f1bcfe711789ea682703f))
+
+## 5.1.9 (2026-06-26)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.17 ([390f90e](https://github.com/ext/npm-pkg-lint/commit/390f90e8f692ebc4d3848cc0725765970a6b6be3))
+
+## 5.1.8 (2026-06-21)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.5 ([8c8f031](https://github.com/ext/npm-pkg-lint/commit/8c8f03136122d77ac0fdd6e372bb088257bbf803))
+
+## 5.1.7 (2026-06-11)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.4 ([90c2a42](https://github.com/ext/npm-pkg-lint/commit/90c2a427e77e486c14230efd5d15ecc76be057ce))
+
+## 5.1.6 (2026-06-10)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.3 ([e9ab2e9](https://github.com/ext/npm-pkg-lint/commit/e9ab2e953d039fe11b7351027f69bad6420cc928))
+
+## 5.1.5 (2026-06-05)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.2 ([aef3eb0](https://github.com/ext/npm-pkg-lint/commit/aef3eb08064645e55ed9bd2c39f37b0c5f4d2a74))
+
+## 5.1.4 (2026-06-02)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.16 ([b29e498](https://github.com/ext/npm-pkg-lint/commit/b29e498aca2915f076a7c96abd0866f085cae670))
+
+## 5.1.3 (2026-05-29)
+
+### Bug Fixes
+
+- **deps:** update dependency tmp to v0.2.7 ([3ce12d7](https://github.com/ext/npm-pkg-lint/commit/3ce12d75ef8ea788cef5b647800e5c45d221396d))
+
+## 5.1.2 (2026-05-27)
+
+### Bug Fixes
+
+- **deps:** update dependency tmp to v0.2.6 [security] ([187372a](https://github.com/ext/npm-pkg-lint/commit/187372aaf85abd5a7bb1c77c0c3e24d1813f6eee))
+
+## 5.1.1 (2026-05-22)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.1 ([ac7a909](https://github.com/ext/npm-pkg-lint/commit/ac7a9097c8635cd6ea899eec684b7f0c15403b69))
+
+## 5.1.0 (2026-05-13)
+
+### Features
+
+- **deps:** update dependency @html-validate/stylish to v6 ([3238727](https://github.com/ext/npm-pkg-lint/commit/3238727155ddfa486e36635c33b43fa2e0be3c40))
+
+## 5.0.0 (2026-05-11)
+
+### ⚠ BREAKING CHANGES
+
+- **deps:** NodeJS v22 or later is now required.
+
+### Features
+
+- **deps:** require nodejs v22 or later ([e18c6e8](https://github.com/ext/npm-pkg-lint/commit/e18c6e859b8fcd738e944c63577ca6b131551ca6))
+- **rules:** node v20 is eol and flagged by the `outdated-engines` rule ([f8cc236](https://github.com/ext/npm-pkg-lint/commit/f8cc23692810fc900439f651c0f140524c6441ad))
+
+## 4.6.9 (2026-05-10)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.8.0 ([7195117](https://github.com/ext/npm-pkg-lint/commit/7195117ae5a53679f019836a51173acbe876f125))
+
+## 4.6.8 (2026-05-09)
+
+### Bug Fixes
+
+- add `array-includes` as an obsolete dependency ([ce90dce](https://github.com/ext/npm-pkg-lint/commit/ce90dce9cfd34af0f9050363b75eec2a62a9edb9))
+
+## 4.6.7 (2026-05-09)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.15 ([22027ab](https://github.com/ext/npm-pkg-lint/commit/22027ab4ca347f2039277301a89a6a2c53e12234))
+
+## 4.6.6 (2026-05-07)
+
+### Bug Fixes
+
+- **deps:** update dependency tar to v7.5.14 ([50cfc3a](https://github.com/ext/npm-pkg-lint/commit/50cfc3a893afacca2708ef56bbf00ddc8ff97932))
+
+## 4.6.5 (2026-04-12)
+
+### Bug Fixes
+
+- **deps:** update dependency @html-validate/stylish to v5.2.0 ([bdd92f2](https://github.com/ext/npm-pkg-lint/commit/bdd92f2990c915206a8fc48f42f1d4dcc575c589))
+
 ## 4.6.4 (2026-04-05)
 
 ### Bug Fixes
